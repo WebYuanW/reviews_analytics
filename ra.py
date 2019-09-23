@@ -19,23 +19,23 @@ print('共有', len(new), '筆留言長度小於100')
 
 # 關鍵字搜尋
 q = input('是否進行關鍵字搜尋？')
-if q == 'yes':
-    while True:
-        x = input('請輸入欲查詢關鍵字')
-        key = [d for d in data if x in d]
-        print('總共有', len(key), '筆資料符合關鍵字', x)
-        rq = input('是否換下個關鍵字？')
+while True:
+    if q == 'yes':
+        key = input('請輸入欲搜尋之關鍵字： ')
+        key_result = [d for d in data if key in d]
+        print('總共有', len(key_result), '筆資料符合關鍵字', key)
+        rq = input('是否再次搜尋？')
         while True:
             if rq == 'yes':
-                qu = False
                 break
             elif rq == 'no':
-                qu = True
+                q = 'no'
                 break
             else:
-                print('請回答yes或no')
-                rq = input('是否換下個關鍵字？')
-        if qu == True:
-            break
-            
-        
+                print('只能輸入yes或no')
+                rq = input('請重新選擇是否再次搜尋？')
+    elif q == 'no':
+        break
+    else:
+        print('只能輸入yes或no')
+        q = input('是否進行關鍵字搜尋？')
