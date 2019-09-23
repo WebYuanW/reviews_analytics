@@ -14,10 +14,7 @@ for d in data:
 print('檔案讀取結束，總共有', len(data), '筆資料')
 print('平均每筆資料長度為', sum_len / len(data))
 
-new = []
-for d in data:
-    if len(d) < 100:
-        new.append(d)
+new = [d for d in data if len(d) < 100]
 print('共有', len(new), '筆留言長度小於100')
 
 # 關鍵字搜尋
@@ -25,12 +22,20 @@ q = input('是否進行關鍵字搜尋？')
 if q == 'yes':
     while True:
         x = input('請輸入欲查詢關鍵字')
-        key = []
-        for d in data:
-            if x in d:
-                key.append(d)
+        key = [d for d in data if x in d]
         print('總共有', len(key), '筆資料符合關鍵字', x)
         rq = input('是否換下個關鍵字？')
-        if rq == 'no':
+        while True:
+            if rq == 'yes':
+                qu = False
+                break
+            elif rq == 'no':
+                qu = True
+                break
+            else:
+                print('請回答yes或no')
+                rq = input('是否換下個關鍵字？')
+        if qu == True:
             break
+            
         
